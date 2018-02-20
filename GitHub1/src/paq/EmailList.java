@@ -6,17 +6,18 @@ import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/Servlet1")
+@WebServlet("/EmailList")
 
 
 
-public class Servlet1 extends HttpServlet {
+public class EmailList extends HttpServlet {
 protected void doGet(HttpServletRequest request, HttpServletResponse response)
 throws ServletException, IOException {
 HttpSession sesion = request.getSession(true);
@@ -33,8 +34,13 @@ html.print("Este es el primer acceso de la sesión <br>");
 date = new Date();
 sesion.setAttribute("date", date);
 sesion.setMaxInactiveInterval(5); 
+String usuarioid = "josemuamon";
+Cookie c = new Cookie("usuarioid", usuarioid);
+response.addCookie(c);
 html.print("Fecha actual: " + date);
 html.print("</strong>");
+
+
 }
 
 }
